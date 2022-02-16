@@ -48,3 +48,22 @@ printBtnAjaxElem.onclick = function () {
     debugger;
   };
 };
+
+//----------------------------------------------------------------------//
+//                               ÖVNING 4                               //
+//----------------------------------------------------------------------//
+const printBtnCheckElem = document.getElementById("ex-4-btn");
+const answer4Elem = document.getElementById("ex-4-out");
+printBtnCheckElem.onclick = function () {
+  fetch(url)
+    .then((response) => response.json())
+    .then((object) => {
+      console.log(object.weather);
+      console.log(object.main);
+      const weather = object.weather[0].description;
+      const tempMax = object.main.temp_max;
+      const tempMin = object.main.temp_min;
+      answer4Elem.innerHTML = `Current weather: ${weather} with temperatures 
+      ranging between ${tempMax} and ${tempMin} degres cesius`;
+    });
+};
