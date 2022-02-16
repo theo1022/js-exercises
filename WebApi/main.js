@@ -20,10 +20,31 @@ PrintExercise1();
 //----------------------------------------------------------------------//
 //                               ÖVNING 2                               //
 //----------------------------------------------------------------------//
-const printBtnElem = document.getElementById("ex-2-btn");
+const printBtnFetchElem = document.getElementById("ex-2-btn");
 const answer2Elem = document.getElementById("ex-2-out");
-printBtnElem.onclick = function () {
+printBtnFetchElem.onclick = function () {
   fetch(url)
     .then((response) => response.text())
     .then((text) => (answer2Elem.innerHTML = JSON.stringify(text)));
+};
+
+//----------------------------------------------------------------------//
+//                               ÖVNING 3                               //
+//----------------------------------------------------------------------//
+
+const printBtnAjaxElem = document.getElementById("ex-3-btn");
+const answer3Elem = document.getElementById("ex-3-out");
+
+printBtnAjaxElem.onclick = function () {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.responseType = "json";
+  xhr.send();
+  xhr.onload = function () {
+    if (xhr.status == 200) answer3Elem.innerHTML = "Response 200 recieved";
+    else answer3Elem.innerHTML = "Response other than 200 recieved";
+  };
+  xhr.onerror = function () {
+    debugger;
+  };
 };
