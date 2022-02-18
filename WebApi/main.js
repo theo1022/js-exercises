@@ -67,3 +67,25 @@ printBtnCheckElem.onclick = function () {
       ranging between ${tempMax} and ${tempMin} degres cesius`;
     });
 };
+
+//----------------------------------------------------------------------//
+//                               ÖVNING 5                               //
+//----------------------------------------------------------------------//
+const postTitleElem = document.getElementById("ex-5-title");
+const postContentElem = document.getElementById("ex-5-content");
+const postAuthorElem = document.getElementById("ex-5-author");
+const commentElem = document.getElementById("ex-5-comments");
+
+const postUrl = new URL("https://jsonplaceholder.typicode.com");
+postUrl.pathname = "/posts";
+postUrl.searchParams.append("_limit", 1);
+postUrl.searchParams.append("userId", 5);
+console.log(postUrl.href);
+
+fetch(postUrl)
+  .then((response) => response.json())
+  .then((object) => {
+    postTitleElem.innerHTML = object[0].title;
+    postContentElem.innerHTML = object[0].body;
+    postAuthorElem.innerHTML = object[0].userId;
+  });
